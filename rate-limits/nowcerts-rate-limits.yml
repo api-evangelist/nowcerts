@@ -1,0 +1,60 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: NowCerts
+providerId: nowcerts
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Insurance
+- Agency Management System
+- AMS
+- Rate Limiting
+- Quotas
+description: >-
+  NowCerts does not publish fixed numeric rate limits for its REST API on the
+  public help page. Practical throughput is bounded by the per-tier API
+  integration allowances in the subscription plan (Professional caps the number
+  of API integrations; Business and Enterprise are unlimited) and by the
+  requirement that the calling user hold the "API Integration" agent role. The
+  many bulk-insert endpoints (for drivers, vehicles, equipment, payments, and so
+  on) suggest batching is the intended pattern for high-volume writes rather
+  than high-frequency single-record calls.
+notes: >-
+  No per-minute or per-day numeric request cap is documented as of the review
+  date. Treat limits as unknown, prefer bulk endpoints for large imports,
+  implement exponential backoff with jitter, and honor Retry-After if returned.
+  Verify any account-specific limits directly with NowCerts / Momentum support.
+sources:
+- https://api.nowcerts.com/Help
+- https://api.nowcerts.com/
+- https://support.momentumamp.com/support/solutions/articles/156000373566-using-the-momentum-ams-rest-api
+responseCodes:
+  throttled: 429
+limits:
+- name: REST API Requests
+  scope: account
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented on the public help page.
+- name: API Integrations
+  scope: account
+  metric: integrations
+  limit: per plan
+  notes: Professional caps API integrations (listed as up to 3); Business and Enterprise are unlimited.
+- name: Bulk Insert Batch
+  scope: endpoint
+  metric: records
+  limit: batch-based
+  notes: Bulk endpoints (BulkInsertDriver, BulkInsertVehicle, Equipment BulkInsertUpdate, TakePaymentBatch) accept arrays; batch large imports rather than looping single inserts.
+policies:
+- name: Role Gating
+  description: The calling user must have the "API Integration" agent role assigned; requests without it are rejected.
+- name: Token Expiry
+  description: Bearer tokens from /token expire and must be refreshed; clients should re-authenticate or use the token refresh flow before expiry.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

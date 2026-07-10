@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NowCerts API",
+    "version": "2.1.5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Authentication", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get bearer token.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nowcerts.com/token",
+            "auth": { "type": "none" },
+            "body": { "type": "urlencoded", "data": "grant_type=password&username=&password=" }
+          },
+          "docs": "Exchange agency user credentials for a bearer token. The user must have the 'API Integration' agent role."
+        },
+        {
+          "info": { "name": "Heartbeat.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.nowcerts.com/api/heartbeat", "auth": { "type": "none" } },
+          "docs": "Lightweight API availability check."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Insureds", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Insert or update an insured/prospect.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.nowcerts.com/api/Insured/Insert", "body": { "type": "json", "data": "{}" } },
+          "docs": "Create or update an insured or prospect, including custom fields."
+        },
+        {
+          "info": { "name": "List insured detail.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/InsuredDetailList",
+            "params": [{ "name": "$top", "value": "50", "type": "query", "description": "Maximum records to return." }]
+          },
+          "docs": "List insured/prospect master data. Supports OData-style query options."
+        },
+        {
+          "info": { "name": "Search customers.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/Customers/GetCustomers",
+            "params": [{ "name": "searchText", "value": "acme", "type": "query", "description": "Free-text search term." }]
+          },
+          "docs": "Multi-field insured/prospect search."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Policies", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Insert or update a policy.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.nowcerts.com/api/Policy/Insert", "body": { "type": "json", "data": "{}" } },
+          "docs": "Create or update a policy for an insured."
+        },
+        {
+          "info": { "name": "Partially update a policy.", "type": "http" },
+          "http": { "method": "PATCH", "url": "https://api.nowcerts.com/api/Policy/PartialUpdate", "body": { "type": "json", "data": "{}" } },
+          "docs": "Apply a partial update to an existing policy."
+        },
+        {
+          "info": { "name": "Find policies.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/Policy/FindPolicies",
+            "params": [{ "name": "policyNumber", "value": "POL-1001", "type": "query", "description": "Policy number to search." }]
+          },
+          "docs": "Search policies by number, carrier, line of business, and dates."
+        },
+        {
+          "info": { "name": "List policy detail.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/PolicyDetailList",
+            "params": [{ "name": "$top", "value": "50", "type": "query", "description": "Maximum records to return." }]
+          },
+          "docs": "List policy master data."
+        },
+        {
+          "info": { "name": "Get policy coverages.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/Policy/Coverages",
+            "params": [{ "name": "policyId", "value": "", "type": "query", "description": "The policy id." }]
+          },
+          "docs": "Get coverage detail for a policy."
+        },
+        {
+          "info": { "name": "Get policy status types.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.nowcerts.com/api/Policy/StatusTypes" },
+          "docs": "List the enumeration of policy status types."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Carriers", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List carriers.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.nowcerts.com/api/CarrierDetailList" },
+          "docs": "List insurance carriers configured for the agency."
+        },
+        {
+          "info": { "name": "List underwriters.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.nowcerts.com/api/UnderwriterDetailList" },
+          "docs": "List underwriters associated with carriers."
+        },
+        {
+          "info": { "name": "List lines of business.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.nowcerts.com/api/LineOfBusinessList" },
+          "docs": "List lines of business (LOB) master data."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Endorsements", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Insert a policy with endorsement id.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.nowcerts.com/api/Policy/InsertWithEndorementId", "body": { "type": "json", "data": "{}" } },
+          "docs": "Create or update a policy referencing an existing endorsement id."
+        },
+        {
+          "info": { "name": "List policy endorsements.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/PolicyEndorsementDetailList",
+            "params": [{ "name": "$top", "value": "50", "type": "query", "description": "Maximum records to return." }]
+          },
+          "docs": "List policy endorsement records."
+        },
+        {
+          "info": { "name": "List endorsement agency commissions.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.nowcerts.com/api/PolicyEndorsementAgencyCommissionDetailList" },
+          "docs": "List agency commission detail for policy endorsements."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Tasks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Insert or update a task.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.nowcerts.com/api/TasksWork/InsertUpdate", "body": { "type": "json", "data": "{}" } },
+          "docs": "Create or update a task and its work group."
+        },
+        {
+          "info": { "name": "List tasks.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/TasksList",
+            "params": [{ "name": "$top", "value": "50", "type": "query", "description": "Maximum records to return." }]
+          },
+          "docs": "List task records."
+        },
+        {
+          "info": { "name": "List task work groups.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.nowcerts.com/api/TasksWorkGroupList" },
+          "docs": "List task work group records."
+        },
+        {
+          "info": { "name": "List to-do items.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.nowcerts.com/api/ToDoList" },
+          "docs": "List to-do items for the agency workflow."
+        }
+      ]
+    }
+  ]
+}

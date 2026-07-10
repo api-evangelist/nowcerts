@@ -1,0 +1,98 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: NowCerts
+providerId: nowcerts
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Insurance
+- Agency Management System
+- AMS
+- Insurtech
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of NowCerts (Momentum AMP) spend. NowCerts is a flat per-agency
+  SaaS subscription billed monthly, with tiers (Essentials, Professional,
+  Business, Enterprise) that bundle storage and a per-tier number of API
+  integrations, plus per-additional-user pricing. The API itself carries no
+  separate metered fee - its cost is the subscription tier required to unlock
+  API integrations (Professional and above) and any additional user seats. Spend
+  is therefore driven by tier selection and seat count rather than by API call
+  volume.
+notes: >-
+  Per-unit rates are not reconciled here and have shifted over time; verify
+  current tier prices, additional-user cost, and API-integration caps on the
+  official pricing page. There is no usage-metered API billing to model - the
+  meters below track the seat- and tier-based cost drivers.
+sources:
+- https://www.nowcerts.com/pricing
+- https://www.getapp.com/industries-software/a/nowcerts/
+- https://api.nowcerts.com/Help
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: NowCerts
+serviceCategory: Insurance Agency Management Software
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: NowCerts (Momentum AMP)
+  ServiceCategory: Insurance Agency Management Software
+  ProviderName: NowCerts
+  PublisherName: NowCerts
+  InvoiceIssuerName: NowCerts
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: subscription_tier
+  description: The monthly subscription tier (Essentials, Professional, Business, Enterprise) that determines feature and API-integration access.
+  unit: subscription
+  aggregation: max
+  dimensions:
+  - account
+  - tier
+- name: user_seats
+  description: Number of licensed user seats; additional users are billed per user per month above the tier allotment.
+  unit: users
+  aggregation: sum
+  dimensions:
+  - account
+- name: api_integrations
+  description: Number of API integrations in use against the per-tier cap (limited on Professional, unlimited on Business and Enterprise).
+  unit: integrations
+  aggregation: sum
+  dimensions:
+  - account
+- name: file_storage
+  description: File storage consumed against the per-tier storage allotment (roughly 10 GB to 1 TB).
+  unit: bytes
+  aggregation: max
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track which subscription tier and how many user seats each agency office holds; confirm whether the tier is chosen for API access it actually uses.
+- name: Allocation
+  description: Map seat count and tier to the office or team using NowCerts so cost is attributed to the right cost center.
+- name: Optimization
+  description: Right-size the tier to actual need - do not pay for Business/Enterprise unlimited API integrations if a Professional cap suffices; batch imports via bulk endpoints to keep integration count low.
+- name: Accountability
+  description: Assign an owner to review the NowCerts invoice against active seats and integrations, and watch for the vendor's known price changes at renewal.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

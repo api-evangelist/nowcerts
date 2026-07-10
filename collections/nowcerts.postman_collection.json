@@ -1,0 +1,254 @@
+{
+  "info": {
+    "name": "NowCerts API",
+    "description": "REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; API still served from api.nowcerts.com). Import, update, search, and retrieve insureds, policies, carriers, endorsements, and tasks. Base URL: https://api.nowcerts.com/api. All requests require a Bearer token obtained from https://api.nowcerts.com/token (OAuth2 password grant); the user must have the 'API Integration' agent role. Endpoint paths are confirmed from api.nowcerts.com/Help; request bodies are modeled.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{bearerToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.nowcerts.com/api", "type": "string" },
+    { "key": "tokenUrl", "value": "https://api.nowcerts.com/token", "type": "string" },
+    { "key": "bearerToken", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Get bearer token",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "grant_type", "value": "password" },
+                { "key": "username", "value": "" },
+                { "key": "password", "value": "" }
+              ]
+            },
+            "url": { "raw": "{{tokenUrl}}", "host": ["{{tokenUrl}}"] },
+            "description": "Exchange agency user credentials for a bearer token. The user must have the 'API Integration' agent role."
+          }
+        },
+        {
+          "name": "Heartbeat",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/heartbeat", "host": ["{{baseUrl}}"], "path": ["heartbeat"] },
+            "description": "Lightweight API availability check."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Insureds",
+      "item": [
+        {
+          "name": "Insert or update an insured/prospect",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"commercialName\": \"Acme LLC\",\n  \"email\": \"owner@acme.example\",\n  \"phone\": \"555-0100\",\n  \"type\": \"Insured\"\n}" },
+            "url": { "raw": "{{baseUrl}}/Insured/Insert", "host": ["{{baseUrl}}"], "path": ["Insured", "Insert"] },
+            "description": "Create or update an insured or prospect, including custom fields."
+          }
+        },
+        {
+          "name": "List insured detail",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/InsuredDetailList?$top=50", "host": ["{{baseUrl}}"], "path": ["InsuredDetailList"], "query": [{ "key": "$top", "value": "50" }] },
+            "description": "List insured/prospect master data. Supports OData-style query options."
+          }
+        },
+        {
+          "name": "Search customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Customers/GetCustomers?searchText=acme", "host": ["{{baseUrl}}"], "path": ["Customers", "GetCustomers"], "query": [{ "key": "searchText", "value": "acme" }] },
+            "description": "Multi-field insured/prospect search."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Policies",
+      "item": [
+        {
+          "name": "Insert or update a policy",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"number\": \"POL-1001\",\n  \"carrierName\": \"Example Mutual\",\n  \"lineOfBusiness\": \"Commercial Auto\",\n  \"effectiveDate\": \"2026-01-01\",\n  \"expirationDate\": \"2027-01-01\"\n}" },
+            "url": { "raw": "{{baseUrl}}/Policy/Insert", "host": ["{{baseUrl}}"], "path": ["Policy", "Insert"] },
+            "description": "Create or update a policy for an insured."
+          }
+        },
+        {
+          "name": "Partially update a policy",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"databaseId\": \"\",\n  \"premium\": 1250.00\n}" },
+            "url": { "raw": "{{baseUrl}}/Policy/PartialUpdate", "host": ["{{baseUrl}}"], "path": ["Policy", "PartialUpdate"] },
+            "description": "Apply a partial update to an existing policy."
+          }
+        },
+        {
+          "name": "Find policies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Policy/FindPolicies?policyNumber=POL-1001", "host": ["{{baseUrl}}"], "path": ["Policy", "FindPolicies"], "query": [{ "key": "policyNumber", "value": "POL-1001" }] },
+            "description": "Search policies by number, carrier, line of business, and dates."
+          }
+        },
+        {
+          "name": "List policy detail",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/PolicyDetailList?$top=50", "host": ["{{baseUrl}}"], "path": ["PolicyDetailList"], "query": [{ "key": "$top", "value": "50" }] },
+            "description": "List policy master data."
+          }
+        },
+        {
+          "name": "Get policy coverages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Policy/Coverages?policyId=", "host": ["{{baseUrl}}"], "path": ["Policy", "Coverages"], "query": [{ "key": "policyId", "value": "" }] },
+            "description": "Get coverage detail for a policy."
+          }
+        },
+        {
+          "name": "Get policy status types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/Policy/StatusTypes", "host": ["{{baseUrl}}"], "path": ["Policy", "StatusTypes"] },
+            "description": "List the enumeration of policy status types."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Carriers",
+      "item": [
+        {
+          "name": "List carriers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/CarrierDetailList", "host": ["{{baseUrl}}"], "path": ["CarrierDetailList"] },
+            "description": "List insurance carriers configured for the agency."
+          }
+        },
+        {
+          "name": "List underwriters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/UnderwriterDetailList", "host": ["{{baseUrl}}"], "path": ["UnderwriterDetailList"] },
+            "description": "List underwriters associated with carriers."
+          }
+        },
+        {
+          "name": "List lines of business",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/LineOfBusinessList", "host": ["{{baseUrl}}"], "path": ["LineOfBusinessList"] },
+            "description": "List lines of business (LOB) master data."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Endorsements",
+      "item": [
+        {
+          "name": "Insert a policy with endorsement id",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"endorsementId\": \"\",\n  \"number\": \"POL-1001\"\n}" },
+            "url": { "raw": "{{baseUrl}}/Policy/InsertWithEndorementId", "host": ["{{baseUrl}}"], "path": ["Policy", "InsertWithEndorementId"] },
+            "description": "Create or update a policy referencing an existing endorsement id."
+          }
+        },
+        {
+          "name": "List policy endorsements",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/PolicyEndorsementDetailList?$top=50", "host": ["{{baseUrl}}"], "path": ["PolicyEndorsementDetailList"], "query": [{ "key": "$top", "value": "50" }] },
+            "description": "List policy endorsement records."
+          }
+        },
+        {
+          "name": "List endorsement agency commissions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/PolicyEndorsementAgencyCommissionDetailList", "host": ["{{baseUrl}}"], "path": ["PolicyEndorsementAgencyCommissionDetailList"] },
+            "description": "List agency commission detail for policy endorsements."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Insert or update a task",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"subject\": \"Follow up on renewal\",\n  \"dueDate\": \"2026-08-01T09:00:00Z\"\n}" },
+            "url": { "raw": "{{baseUrl}}/TasksWork/InsertUpdate", "host": ["{{baseUrl}}"], "path": ["TasksWork", "InsertUpdate"] },
+            "description": "Create or update a task and its work group."
+          }
+        },
+        {
+          "name": "List tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/TasksList?$top=50", "host": ["{{baseUrl}}"], "path": ["TasksList"], "query": [{ "key": "$top", "value": "50" }] },
+            "description": "List task records."
+          }
+        },
+        {
+          "name": "List task work groups",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/TasksWorkGroupList", "host": ["{{baseUrl}}"], "path": ["TasksWorkGroupList"] },
+            "description": "List task work group records."
+          }
+        },
+        {
+          "name": "List to-do items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/ToDoList", "host": ["{{baseUrl}}"], "path": ["ToDoList"] },
+            "description": "List to-do items for the agency workflow."
+          }
+        }
+      ]
+    }
+  ]
+}

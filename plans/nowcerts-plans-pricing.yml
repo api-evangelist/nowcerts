@@ -1,0 +1,153 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: NowCerts
+providerId: nowcerts
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Insurance
+- Agency Management System
+- AMS
+- Insurtech
+- Plans
+description: >-
+  NowCerts (Momentum AMP) is sold as a per-agency SaaS subscription with
+  published monthly tiers. API access is not a separate product - it is a
+  feature gated by tier. The Essentials tier has no API access; Professional
+  adds a limited number of API integrations; Business offers unlimited API
+  integrations; and Enterprise adds custom and unlimited API integrations plus
+  a whitelabeled URL. To call the API, an agency user must additionally be
+  granted the "API Integration" agent role. Published prices have shifted over
+  time and vary by source, so exact figures below are grounded to public
+  listings but flagged unreconciled.
+notes: >-
+  Reviewers repeatedly note that NowCerts changes prices, and published numbers
+  differ between the vendor pricing page and third-party directories (for
+  example Professional has been listed at both $149 and $169, and Business at
+  both $295 and $349). Additional user licenses have been listed around
+  $45/user/month. Verify current tiers, per-user add-on cost, and API
+  integration caps on the official pricing page during reconciliation.
+sources:
+- https://www.nowcerts.com/pricing
+- https://www.getapp.com/industries-software/a/nowcerts/
+- https://www.softwareadvice.com/insurance/nowcerts-profile/
+- https://support.momentumamp.com/support/solutions/articles/156000373566-using-the-momentum-ams-rest-api
+plans:
+- id: nowcerts-essentials
+  name: Essentials
+  type: paid
+  description: >-
+    Entry AMS tier for a small agency. Core client and policy management, ACORD
+    forms, workflows, renewals, and commission reconciliation, with the online
+    support center and roughly 10 GB of file storage. No API access at this tier.
+  entries:
+  - label: Base Subscription
+    name: essentials_base
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $99/month (see pricing page; user allotment varies by source)
+    userMultiplied: false
+  elements:
+  - name: Client and Policy Management
+  - name: ACORD Forms
+  - name: Workflows and Renewals
+  - name: Commission Reconciliation
+  - name: 10 GB File Storage
+  - name: No API Access
+- id: nowcerts-professional
+  name: Professional
+  type: paid
+  description: >-
+    Mid tier adding video-conferencing support, more storage (around 25 GB), and
+    a limited number of API integrations (listed as up to 3). This is the entry
+    point for programmatic access to the NowCerts API.
+  entries:
+  - label: Base Subscription
+    name: professional_base
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: listed at $149-$169/month (varies by source)
+    userMultiplied: false
+  - label: Additional User
+    name: professional_additional_user
+    type: unit
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approximately $45/user/month (verify)
+    userMultiplied: true
+  elements:
+  - name: Everything in Essentials
+  - name: Up to 3 API Integrations
+  - name: Video Conferencing Support
+  - name: 25 GB File Storage
+- id: nowcerts-business
+  name: Business
+  type: paid
+  description: >-
+    Higher tier for growing agencies with unlimited API integrations, larger
+    storage (around 100 GB), and video-conferencing support.
+  entries:
+  - label: Base Subscription
+    name: business_base
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: listed at $295-$349/month (varies by source)
+    userMultiplied: false
+  - label: Additional User
+    name: business_additional_user
+    type: unit
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approximately $45/user/month (verify)
+    userMultiplied: true
+  elements:
+  - name: Everything in Professional
+  - name: Unlimited API Integrations
+  - name: 100 GB File Storage
+  - name: Video Conferencing Support
+- id: nowcerts-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom tier for large agencies (50+ users) with a whitelabeled URL, a
+    dedicated account manager, around 1 TB of storage, and custom and unlimited
+    API integrations. Contact sales for pricing.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom and Unlimited API Integrations
+  - name: Whitelabeled URL
+  - name: Dedicated Account Manager
+  - name: 1 TB Storage
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

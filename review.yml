@@ -1,0 +1,96 @@
+aid: nowcerts
+name: NowCerts
+review:
+  question: Does NowCerts expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-10'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. NowCerts' entire documented public
+    surface (the api.nowcerts.com REST API) is request/response REST over
+    HTTPS - there is no server-push WebSocket transport on NowCerts' own API to
+    model. The closest thing to event delivery is an inbound-SMS subscription
+    facility (/api/sms/subscribe-for-inbound-message), which delivers messages
+    to a caller-registered HTTP callback (webhook), not a persistent WebSocket
+    connection. Webhook fan-out is out of scope for an AsyncAPI document here.
+findings:
+  summary: |
+    NowCerts does not publish a documented public WebSocket API. NowCerts
+    (now branded Momentum AMP, API still at api.nowcerts.com) is a cloud
+    insurance agency management system. Its public API is a token-authenticated
+    ASP.NET Web API documented at api.nowcerts.com/Help, exposing 160+ REST
+    endpoints for insureds, policies, carriers, endorsements, tasks, drivers,
+    vehicles, properties, claims, certificates of insurance, notes, SMS, and
+    payments. Every documented endpoint is plain request/response REST over
+    HTTPS. No realtime, bidirectional, or streaming WebSocket (ws:// or wss://)
+    endpoint is documented anywhere on NowCerts' own API.
+  accessModel: |
+    Public docs, account-gated. The ASP.NET Web API help page at
+    api.nowcerts.com/Help is publicly viewable and the API collection can be
+    imported into Postman, but making authenticated calls requires an existing
+    NowCerts / Momentum agency account whose user has been granted the
+    "API Integration" agent role. API integrations are gated to the Professional
+    subscription tier and above (Essentials has no API access). Endpoints are
+    confirmed real from the live help page; request and response schemas in the
+    accompanying OpenAPI and collections are honestly modeled from the
+    documented operations and standard AMS field sets, and are flagged as
+    modeled where the exact payload was not enumerated.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.nowcerts.com/api
+      documented: true
+      note: The full public API. Token obtained via OAuth2 password grant at https://api.nowcerts.com/token (help page also references /Identity/Login and /Identity/TokenRefresh).
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Inbound SMS can be delivered to a registered callback via /api/sms/subscribe-for-inbound-message. HTTP callback, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the NowCerts API help as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.nowcerts.com/token
+    - POST https://api.nowcerts.com/api/Insured/Insert
+    - GET  https://api.nowcerts.com/api/InsuredDetailList
+    - GET  https://api.nowcerts.com/api/Customers/GetCustomers
+    - POST https://api.nowcerts.com/api/Policy/Insert
+    - PATCH https://api.nowcerts.com/api/Policy/PartialUpdate
+    - GET  https://api.nowcerts.com/api/Policy/FindPolicies
+    - GET  https://api.nowcerts.com/api/PolicyDetailList
+    - GET  https://api.nowcerts.com/api/Policy/Coverages
+    - GET  https://api.nowcerts.com/api/Policy/StatusTypes
+    - GET  https://api.nowcerts.com/api/CarrierDetailList
+    - GET  https://api.nowcerts.com/api/UnderwriterDetailList
+    - GET  https://api.nowcerts.com/api/LineOfBusinessList
+    - POST https://api.nowcerts.com/api/Policy/InsertWithEndorementId
+    - GET  https://api.nowcerts.com/api/PolicyEndorsementDetailList
+    - GET  https://api.nowcerts.com/api/PolicyEndorsementAgencyCommissionDetailList
+    - POST https://api.nowcerts.com/api/TasksWork/InsertUpdate
+    - GET  https://api.nowcerts.com/api/TasksList
+    - GET  https://api.nowcerts.com/api/TasksWorkGroupList
+    - GET  https://api.nowcerts.com/api/ToDoList
+    - GET  https://api.nowcerts.com/api/heartbeat
+sources:
+  - url: https://api.nowcerts.com/Help
+    type: APIReference
+    note: Live ASP.NET Web API help page (v2.1.5) enumerating 160+ REST endpoints. No WebSocket mentioned.
+  - url: https://api.nowcerts.com/
+    type: Documentation
+    note: API landing page describing token auth and the insured/policy/prospect import model.
+  - url: https://support.momentumamp.com/support/solutions/articles/156000373566-using-the-momentum-ams-rest-api
+    type: Documentation
+    note: Momentum AMS REST API getting-started guide (token via /token, "API Integration" agent role required).
+  - url: https://www.nowcerts.com/pricing
+    type: Plans
+    note: Pricing tiers; API integrations gated to Professional and above.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists on NowCerts' own API. The entire
+    documented public API is request/response REST over HTTPS. No AsyncAPI
+    document was created because there is no server-push transport to model;
+    the one event-style feature (inbound SMS) is delivered by HTTP callback,
+    which is a webhook rather than a WebSocket.
