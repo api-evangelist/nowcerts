@@ -160,6 +160,10 @@ apis:
     as /api/TasksWork/InsertUpdate, /api/TasksList, /api/TasksWorkGroupList, and
     /api/ToDoList.
 common:
+- type: DomainSecurity
+  url: security/nowcerts-domain-security.yml
+- type: Authentication
+  url: authentication/nowcerts-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/momentumamp
 - type: Website
