@@ -160,6 +160,8 @@ apis:
     as /api/TasksWork/InsertUpdate, /api/TasksList, /api/TasksWorkGroupList, and
     /api/ToDoList.
 common:
+- type: AgenticAccess
+  url: agentic-access/nowcerts-agentic-access.yml
 - type: DomainSecurity
   url: security/nowcerts-domain-security.yml
 - type: Authentication
