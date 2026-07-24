@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: NowCerts Authentication API
+  description: 'The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com). It lets an agency and its integration partners import, update, search, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, and tasks and workflow. All requests are authenticated with a bearer token obtained from https://api.nowcerts.com/token using the OAuth2 password grant; the account making the request must have the "API Integration" agent role assigned, and API access is available on the Professional subscription tier and above.
+
+    Endpoints in this document are confirmed from the live ASP.NET Web API help page at api.nowcerts.com/Help (v2.1.5). Request and response schemas are honestly modeled from the documented operations and standard AMS field sets; where a payload was not fully enumerated on the help page it is marked as modeled and additionalProperties is left open. This is a representative subset of a 160+ endpoint API, organized around the five core resources catalogued for the API Evangelist network.'
+  version: 2.1.5
+  contact:
+    name: NowCerts / Momentum AMP
+    url: https://www.nowcerts.com
+  x-modeled: Endpoint paths and methods are confirmed real from api.nowcerts.com/Help. Schemas are modeled from documented behavior and typical AMS fields, not copied from an official machine-readable spec (NowCerts does not publish OpenAPI).
+servers:
+- url: https://api.nowcerts.com/api
+  description: NowCerts production API
+security:
+- bearerAuth: []
+tags:
+- name: Authentication
+  description: Obtain and refresh bearer tokens.
+paths:
+  /token:
+    servers:
+    - url: https://api.nowcerts.com
+    post:
+      operationId: getToken
+      tags:
+      - Authentication
+      summary: Obtain a bearer token
+      description: Exchange agency user credentials for a bearer access token using the OAuth2 password grant. The user must have the "API Integration" agent role. Returns an access_token used as a Bearer token on all subsequent requests.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - username
+              - password
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - password
+                username:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                client_id:
+                  type: string
+      responses:
+        '200':
+          description: A bearer token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /heartbeat:
+    get:
+      operationId: heartbeat
+      tags:
+      - Authentication
+      summary: API availability check
+      description: Lightweight liveness check for the API.
+      security: []
+      responses:
+        '200':
+          description: The API is available.
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      description: OAuth2 password-grant token response. Modeled.
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+      additionalProperties: true
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string
+      additionalProperties: true
+  responses:
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained from https://api.nowcerts.com/token via the OAuth2 password grant. The user must have the "API Integration" agent role.

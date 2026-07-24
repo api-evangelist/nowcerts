@@ -1,0 +1,257 @@
+openapi: 3.0.3
+info:
+  title: NowCerts Authentication Policies API
+  description: 'The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com). It lets an agency and its integration partners import, update, search, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, and tasks and workflow. All requests are authenticated with a bearer token obtained from https://api.nowcerts.com/token using the OAuth2 password grant; the account making the request must have the "API Integration" agent role assigned, and API access is available on the Professional subscription tier and above.
+
+    Endpoints in this document are confirmed from the live ASP.NET Web API help page at api.nowcerts.com/Help (v2.1.5). Request and response schemas are honestly modeled from the documented operations and standard AMS field sets; where a payload was not fully enumerated on the help page it is marked as modeled and additionalProperties is left open. This is a representative subset of a 160+ endpoint API, organized around the five core resources catalogued for the API Evangelist network.'
+  version: 2.1.5
+  contact:
+    name: NowCerts / Momentum AMP
+    url: https://www.nowcerts.com
+  x-modeled: Endpoint paths and methods are confirmed real from api.nowcerts.com/Help. Schemas are modeled from documented behavior and typical AMS fields, not copied from an official machine-readable spec (NowCerts does not publish OpenAPI).
+servers:
+- url: https://api.nowcerts.com/api
+  description: NowCerts production API
+security:
+- bearerAuth: []
+tags:
+- name: Policies
+  description: Policies, coverages, and quotes.
+paths:
+  /Policy/Insert:
+    post:
+      operationId: insertPolicy
+      tags:
+      - Policies
+      summary: Insert or update a policy
+      description: Create a new policy or update an existing one for a given insured. Schema modeled.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+      responses:
+        '200':
+          description: The created or updated policy.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Policy/PartialUpdate:
+    patch:
+      operationId: partialUpdatePolicy
+      tags:
+      - Policies
+      summary: Partially update a policy
+      description: Apply a partial update to an existing policy identified by its database id.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+      responses:
+        '200':
+          description: The updated policy.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Policy/FindPolicies:
+    get:
+      operationId: findPolicies
+      tags:
+      - Policies
+      summary: Search policies
+      description: Search policies by policy number, carrier, line of business, and effective/expiration dates.
+      parameters:
+      - name: policyNumber
+        in: query
+        schema:
+          type: string
+      - name: carrier
+        in: query
+        schema:
+          type: string
+      - name: lineOfBusiness
+        in: query
+        schema:
+          type: string
+      - name: effectiveDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: expirationDate
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Matching policies.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Policy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /PolicyDetailList:
+    get:
+      operationId: listPolicyDetail
+      tags:
+      - Policies
+      summary: List policy master data
+      description: Returns policy master records, with OData-style query options.
+      parameters:
+      - $ref: '#/components/parameters/ODataFilter'
+      - $ref: '#/components/parameters/ODataTop'
+      - $ref: '#/components/parameters/ODataSkip'
+      - $ref: '#/components/parameters/ODataOrderBy'
+      responses:
+        '200':
+          description: A list of policies.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Policy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Policy/Coverages:
+    get:
+      operationId: getPolicyCoverages
+      tags:
+      - Policies
+      summary: Get policy coverages
+      description: Returns coverage detail for a policy.
+      parameters:
+      - name: policyId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Coverage detail.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Coverage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Policy/StatusTypes:
+    get:
+      operationId: getPolicyStatusTypes
+      tags:
+      - Policies
+      summary: List policy status types
+      description: Returns the enumeration of policy status types.
+      responses:
+        '200':
+          description: Policy status types.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string
+      additionalProperties: true
+    Coverage:
+      type: object
+      description: A coverage line on a policy. Modeled.
+      properties:
+        name:
+          type: string
+        limit:
+          type: number
+        deductible:
+          type: number
+      additionalProperties: true
+    Policy:
+      type: object
+      description: An insurance policy. Modeled from documented policy fields.
+      properties:
+        databaseId:
+          type: string
+          format: uuid
+        insuredDatabaseId:
+          type: string
+          format: uuid
+        number:
+          type: string
+        carrierName:
+          type: string
+        lineOfBusiness:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        expirationDate:
+          type: string
+          format: date
+        premium:
+          type: number
+        statusType:
+          type: string
+      additionalProperties: true
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token, or the user lacks the API Integration role.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ODataFilter:
+      name: $filter
+      in: query
+      description: OData-style filter expression.
+      schema:
+        type: string
+    ODataOrderBy:
+      name: $orderby
+      in: query
+      description: OData-style ordering expression.
+      schema:
+        type: string
+    ODataSkip:
+      name: $skip
+      in: query
+      description: Number of records to skip.
+      schema:
+        type: integer
+    ODataTop:
+      name: $top
+      in: query
+      description: Maximum number of records to return.
+      schema:
+        type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained from https://api.nowcerts.com/token via the OAuth2 password grant. The user must have the "API Integration" agent role.

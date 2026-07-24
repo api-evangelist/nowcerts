@@ -1,0 +1,169 @@
+openapi: 3.0.3
+info:
+  title: NowCerts Authentication Insureds API
+  description: 'The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com). It lets an agency and its integration partners import, update, search, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, and tasks and workflow. All requests are authenticated with a bearer token obtained from https://api.nowcerts.com/token using the OAuth2 password grant; the account making the request must have the "API Integration" agent role assigned, and API access is available on the Professional subscription tier and above.
+
+    Endpoints in this document are confirmed from the live ASP.NET Web API help page at api.nowcerts.com/Help (v2.1.5). Request and response schemas are honestly modeled from the documented operations and standard AMS field sets; where a payload was not fully enumerated on the help page it is marked as modeled and additionalProperties is left open. This is a representative subset of a 160+ endpoint API, organized around the five core resources catalogued for the API Evangelist network.'
+  version: 2.1.5
+  contact:
+    name: NowCerts / Momentum AMP
+    url: https://www.nowcerts.com
+  x-modeled: Endpoint paths and methods are confirmed real from api.nowcerts.com/Help. Schemas are modeled from documented behavior and typical AMS fields, not copied from an official machine-readable spec (NowCerts does not publish OpenAPI).
+servers:
+- url: https://api.nowcerts.com/api
+  description: NowCerts production API
+security:
+- bearerAuth: []
+tags:
+- name: Insureds
+  description: Insureds and prospects (customers), their contacts, and related data.
+paths:
+  /Insured/Insert:
+    post:
+      operationId: insertInsured
+      tags:
+      - Insureds
+      summary: Insert or update an insured/prospect
+      description: Create a new insured or prospect, or update an existing one when a matching database id is supplied. Supports custom fields. Schema modeled.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Insured'
+      responses:
+        '200':
+          description: The created or updated insured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Insured'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /InsuredDetailList:
+    get:
+      operationId: listInsuredDetail
+      tags:
+      - Insureds
+      summary: List insured/prospect master data
+      description: Returns insured and prospect master records. Supports OData-style query options (for example $filter, $top, $skip, $orderby) as exposed by the underlying ASP.NET Web API detail-list endpoints.
+      parameters:
+      - $ref: '#/components/parameters/ODataFilter'
+      - $ref: '#/components/parameters/ODataTop'
+      - $ref: '#/components/parameters/ODataSkip'
+      - $ref: '#/components/parameters/ODataOrderBy'
+      responses:
+        '200':
+          description: A list of insureds.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Insured'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Customers/GetCustomers:
+    get:
+      operationId: getCustomers
+      tags:
+      - Insureds
+      summary: Multi-field insured/prospect search
+      description: Search insureds and prospects across name, email, phone, and other fields.
+      parameters:
+      - name: searchText
+        in: query
+        schema:
+          type: string
+        description: Free-text search term matched across insured fields.
+      responses:
+        '200':
+          description: Matching insureds/prospects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Insured'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string
+      additionalProperties: true
+    Insured:
+      type: object
+      description: An insured or prospect (customer). Modeled from documented insured fields.
+      properties:
+        databaseId:
+          type: string
+          format: uuid
+        commercialName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        type:
+          type: string
+          description: Insured or Prospect.
+        addressLine1:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          type: string
+        customFields:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token, or the user lacks the API Integration role.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ODataFilter:
+      name: $filter
+      in: query
+      description: OData-style filter expression.
+      schema:
+        type: string
+    ODataOrderBy:
+      name: $orderby
+      in: query
+      description: OData-style ordering expression.
+      schema:
+        type: string
+    ODataSkip:
+      name: $skip
+      in: query
+      description: Number of records to skip.
+      schema:
+        type: integer
+    ODataTop:
+      name: $top
+      in: query
+      description: Maximum number of records to return.
+      schema:
+        type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained from https://api.nowcerts.com/token via the OAuth2 password grant. The user must have the "API Integration" agent role.

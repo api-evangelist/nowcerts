@@ -1,0 +1,170 @@
+openapi: 3.0.3
+info:
+  title: NowCerts Authentication Tasks API
+  description: 'The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com). It lets an agency and its integration partners import, update, search, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, and tasks and workflow. All requests are authenticated with a bearer token obtained from https://api.nowcerts.com/token using the OAuth2 password grant; the account making the request must have the "API Integration" agent role assigned, and API access is available on the Professional subscription tier and above.
+
+    Endpoints in this document are confirmed from the live ASP.NET Web API help page at api.nowcerts.com/Help (v2.1.5). Request and response schemas are honestly modeled from the documented operations and standard AMS field sets; where a payload was not fully enumerated on the help page it is marked as modeled and additionalProperties is left open. This is a representative subset of a 160+ endpoint API, organized around the five core resources catalogued for the API Evangelist network.'
+  version: 2.1.5
+  contact:
+    name: NowCerts / Momentum AMP
+    url: https://www.nowcerts.com
+  x-modeled: Endpoint paths and methods are confirmed real from api.nowcerts.com/Help. Schemas are modeled from documented behavior and typical AMS fields, not copied from an official machine-readable spec (NowCerts does not publish OpenAPI).
+servers:
+- url: https://api.nowcerts.com/api
+  description: NowCerts production API
+security:
+- bearerAuth: []
+tags:
+- name: Tasks
+  description: Tasks, task work groups, and to-do workflow.
+paths:
+  /TasksWork/InsertUpdate:
+    post:
+      operationId: insertUpdateTask
+      tags:
+      - Tasks
+      summary: Insert or update a task work group
+      description: Create or update a task and its work group. Schema modeled.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: The created or updated task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /TasksList:
+    get:
+      operationId: listTasks
+      tags:
+      - Tasks
+      summary: List tasks
+      description: Returns task records, with OData-style query options.
+      parameters:
+      - $ref: '#/components/parameters/ODataFilter'
+      - $ref: '#/components/parameters/ODataTop'
+      - $ref: '#/components/parameters/ODataSkip'
+      - $ref: '#/components/parameters/ODataOrderBy'
+      responses:
+        '200':
+          description: A list of tasks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /TasksWorkGroupList:
+    get:
+      operationId: listTaskWorkGroups
+      tags:
+      - Tasks
+      summary: List task work groups
+      description: Returns task work group records.
+      responses:
+        '200':
+          description: A list of task work groups.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ToDoList:
+    get:
+      operationId: listToDo
+      tags:
+      - Tasks
+      summary: List to-do items
+      description: Returns to-do items for the agency's workflow.
+      responses:
+        '200':
+          description: A list of to-do items.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string
+      additionalProperties: true
+    Task:
+      type: object
+      description: A task / to-do work item. Modeled.
+      properties:
+        databaseId:
+          type: string
+          format: uuid
+        subject:
+          type: string
+        description:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
+        assignedToAgentId:
+          type: string
+          format: uuid
+        completed:
+          type: boolean
+      additionalProperties: true
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token, or the user lacks the API Integration role.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ODataFilter:
+      name: $filter
+      in: query
+      description: OData-style filter expression.
+      schema:
+        type: string
+    ODataOrderBy:
+      name: $orderby
+      in: query
+      description: OData-style ordering expression.
+      schema:
+        type: string
+    ODataSkip:
+      name: $skip
+      in: query
+      description: Number of records to skip.
+      schema:
+        type: integer
+    ODataTop:
+      name: $top
+      in: query
+      description: Maximum number of records to return.
+      schema:
+        type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained from https://api.nowcerts.com/token via the OAuth2 password grant. The user must have the "API Integration" agent role.
