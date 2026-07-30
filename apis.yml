@@ -15,7 +15,20 @@ description: >-
   are gated to the Professional tier and above. Endpoints are documented on the
   public ASP.NET Web API help page at api.nowcerts.com/Help and are widely used
   through Zapier and partner integrations.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/nowcerts.png
 tags:
 - Insurance
 - Insurtech
@@ -29,136 +42,132 @@ created: '2026-07-10'
 modified: '2026-07-10'
 specificationVersion: '0.19'
 apis:
-- aid: nowcerts:nowcerts-insureds-api
-  name: NowCerts Insureds API
-  tags:
-  - Insureds
-  - Prospects
-  - Customers
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: nowcerts:nowcerts-authentication-api
+  name: NowCerts Authentication API
+  description: Obtain and refresh bearer tokens.
   humanURL: https://api.nowcerts.com/Help
   baseURL: https://api.nowcerts.com/api
-  properties:
-  - url: https://api.nowcerts.com/Help
-    type: Documentation
-  - url: https://api.nowcerts.com/Help
-    type: APIReference
-  - url: openapi/nowcerts-openapi.yml
-    type: OpenAPI
-  - url: collections/nowcerts.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nowcerts.opencollection.json
-    type: OpenCollection
-  description: >-
-    Create, update, search, and retrieve insureds and prospects, including
-    custom fields, contacts, tags, notes, tasks, claims, and the policies
-    associated with each insured. Backed by confirmed endpoints such as
-    /api/Insured/Insert, /api/InsuredDetailList, and
-    /api/Customers/GetCustomers.
-- aid: nowcerts:nowcerts-policies-api
-  name: NowCerts Policies API
   tags:
-  - Policies
-  - Coverages
-  - Quotes
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.nowcerts.com/Help
-  baseURL: https://api.nowcerts.com/api
+  - Authentication
   properties:
-  - url: https://api.nowcerts.com/Help
-    type: Documentation
-  - url: https://api.nowcerts.com/Help/Api/GET-api-Policy-GetPolicyFilesList_insuredId_policyId_folderId
-    type: APIReference
-  - url: openapi/nowcerts-openapi.yml
-    type: OpenAPI
-  - url: collections/nowcerts.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nowcerts.opencollection.json
-    type: OpenCollection
-  description: >-
-    Insert and partially update policies, search the book of business by policy
-    number, carrier, line of business, and dates, and read policy detail,
-    coverages, status types, drivers, vehicles, and properties. Backed by
-    confirmed endpoints such as /api/Policy/Insert, /api/Policy/FindPolicies,
-    /api/PolicyDetailList, and /api/Policy/Coverages.
+  - type: OpenAPI
+    url: openapi/nowcerts-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://api.nowcerts.com/Help
+  - type: APIReference
+    url: https://api.nowcerts.com/Help
+  - type: PostmanCollection
+    url: collections/nowcerts.postman_collection.json
+  - type: OpenCollection
+    url: collections/nowcerts.opencollection.json
+  - type: APIReference
+    url: >-
+      https://api.nowcerts.com/Help/Api/GET-api-Policy-GetPolicyFilesList_insuredId_policyId_folderId
 - aid: nowcerts:nowcerts-carriers-api
   name: NowCerts Carriers API
+  description: Carrier, underwriter, and line-of-business reference data.
+  humanURL: https://api.nowcerts.com/Help
+  baseURL: https://api.nowcerts.com/api
   tags:
   - Carriers
-  - Underwriters
-  - Reference Data
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.nowcerts.com/Help
-  baseURL: https://api.nowcerts.com/api
   properties:
-  - url: https://api.nowcerts.com/Help
-    type: Documentation
-  - url: https://api.nowcerts.com/Help
-    type: APIReference
-  - url: openapi/nowcerts-openapi.yml
-    type: OpenAPI
-  - url: collections/nowcerts.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nowcerts.opencollection.json
-    type: OpenCollection
-  description: >-
-    Retrieve the carrier and underwriter reference data used across the agency -
-    the insurance carriers a policy can be written with and the underwriters and
-    lines of business that describe them. Backed by confirmed list endpoints such
-    as /api/CarrierDetailList, /api/UnderwriterDetailList, and
-    /api/LineOfBusinessList.
+  - type: OpenAPI
+    url: openapi/nowcerts-carriers-api-openapi.yml
+  - type: Documentation
+    url: https://api.nowcerts.com/Help
+  - type: APIReference
+    url: https://api.nowcerts.com/Help
+  - type: PostmanCollection
+    url: collections/nowcerts.postman_collection.json
+  - type: OpenCollection
+    url: collections/nowcerts.opencollection.json
+  - type: APIReference
+    url: >-
+      https://api.nowcerts.com/Help/Api/GET-api-Policy-GetPolicyFilesList_insuredId_policyId_folderId
 - aid: nowcerts:nowcerts-endorsements-api
   name: NowCerts Endorsements API
+  description: Policy endorsements and their financial detail.
+  humanURL: https://api.nowcerts.com/Help
+  baseURL: https://api.nowcerts.com/api
   tags:
   - Endorsements
-  - Commissions
-  - Receivables
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/nowcerts-endorsements-api-openapi.yml
+  - type: Documentation
+    url: https://api.nowcerts.com/Help
+  - type: APIReference
+    url: https://api.nowcerts.com/Help
+  - type: PostmanCollection
+    url: collections/nowcerts.postman_collection.json
+  - type: OpenCollection
+    url: collections/nowcerts.opencollection.json
+  - type: APIReference
+    url: >-
+      https://api.nowcerts.com/Help/Api/GET-api-Policy-GetPolicyFilesList_insuredId_policyId_folderId
+- aid: nowcerts:nowcerts-insureds-api
+  name: NowCerts Insureds API
+  description: Insureds and prospects (customers), their contacts, and related data.
   humanURL: https://api.nowcerts.com/Help
   baseURL: https://api.nowcerts.com/api
+  tags:
+  - Insureds
   properties:
-  - url: https://api.nowcerts.com/Help
-    type: Documentation
-  - url: https://api.nowcerts.com/Help
-    type: APIReference
-  - url: openapi/nowcerts-openapi.yml
-    type: OpenAPI
-  - url: collections/nowcerts.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nowcerts.opencollection.json
-    type: OpenCollection
-  description: >-
-    Read policy endorsement records and their financial detail - agency
-    commissions, receivables, payables, and financing - and insert a policy tied
-    to an endorsement id. Backed by confirmed endpoints such as
-    /api/PolicyEndorsementDetailList,
-    /api/PolicyEndorsementAgencyCommissionDetailList, and
-    /api/Policy/InsertWithEndorementId.
+  - type: OpenAPI
+    url: openapi/nowcerts-insureds-api-openapi.yml
+  - type: Documentation
+    url: https://api.nowcerts.com/Help
+  - type: APIReference
+    url: https://api.nowcerts.com/Help
+  - type: PostmanCollection
+    url: collections/nowcerts.postman_collection.json
+  - type: OpenCollection
+    url: collections/nowcerts.opencollection.json
+  - type: APIReference
+    url: >-
+      https://api.nowcerts.com/Help/Api/GET-api-Policy-GetPolicyFilesList_insuredId_policyId_folderId
+- aid: nowcerts:nowcerts-policies-api
+  name: NowCerts Policies API
+  description: Policies, coverages, and quotes.
+  humanURL: https://api.nowcerts.com/Help
+  baseURL: https://api.nowcerts.com/api
+  tags:
+  - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/nowcerts-policies-api-openapi.yml
+  - type: Documentation
+    url: https://api.nowcerts.com/Help
+  - type: APIReference
+    url: https://api.nowcerts.com/Help
+  - type: PostmanCollection
+    url: collections/nowcerts.postman_collection.json
+  - type: OpenCollection
+    url: collections/nowcerts.opencollection.json
+  - type: APIReference
+    url: >-
+      https://api.nowcerts.com/Help/Api/GET-api-Policy-GetPolicyFilesList_insuredId_policyId_folderId
 - aid: nowcerts:nowcerts-tasks-api
   name: NowCerts Tasks API
-  tags:
-  - Tasks
-  - Workflow
-  - To Do
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: Tasks, task work groups, and to-do workflow.
   humanURL: https://api.nowcerts.com/Help
   baseURL: https://api.nowcerts.com/api
+  tags:
+  - Tasks
   properties:
-  - url: https://api.nowcerts.com/Help
-    type: Documentation
-  - url: https://api.nowcerts.com/Help
-    type: APIReference
-  - url: openapi/nowcerts-openapi.yml
-    type: OpenAPI
-  - url: collections/nowcerts.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nowcerts.opencollection.json
-    type: OpenCollection
-  description: >-
-    Insert and update tasks and task work groups, and read task, to-do, and task
-    category lists that drive agency workflow. Backed by confirmed endpoints such
-    as /api/TasksWork/InsertUpdate, /api/TasksList, /api/TasksWorkGroupList, and
-    /api/ToDoList.
+  - type: OpenAPI
+    url: openapi/nowcerts-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://api.nowcerts.com/Help
+  - type: APIReference
+    url: https://api.nowcerts.com/Help
+  - type: PostmanCollection
+    url: collections/nowcerts.postman_collection.json
+  - type: OpenCollection
+    url: collections/nowcerts.opencollection.json
+  - type: APIReference
+    url: >-
+      https://api.nowcerts.com/Help/Api/GET-api-Policy-GetPolicyFilesList_insuredId_policyId_folderId
 common:
 - type: AgenticAccess
   url: agentic-access/nowcerts-agentic-access.yml
