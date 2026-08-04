@@ -1,0 +1,24 @@
+{
+  "provider": "nowcerts",
+  "sources": [
+    "nowcerts-authentication-api-openapi.yml",
+    "nowcerts-carriers-api-openapi.yml",
+    "nowcerts-endorsements-api-openapi.yml",
+    "nowcerts-insureds-api-openapi.yml",
+    "nowcerts-policies-api-openapi.yml",
+    "nowcerts-tasks-api-openapi.yml"
+  ],
+  "outputs": [
+    "nowcerts-authentication-api-openapi.yml",
+    "nowcerts-carriers-api-openapi.yml",
+    "nowcerts-endorsements-api-openapi.yml",
+    "nowcerts-insureds-api-openapi.yml",
+    "nowcerts-policies-api-openapi.yml",
+    "nowcerts-tasks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
