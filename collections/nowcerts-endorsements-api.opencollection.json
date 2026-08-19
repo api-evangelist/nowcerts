@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NowCerts Authentication Endorsements API",
+    "version": "2.1.5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Endorsements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Insert a policy tied to an endorsement id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nowcerts.com/api/Policy/InsertWithEndorementId",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update a policy referencing an existing endorsement id. Schema modeled."
+        },
+        {
+          "info": {
+            "name": "List policy endorsements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/PolicyEndorsementDetailList",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData-style filter expression."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "OData-style ordering expression."
+              }
+            ]
+          },
+          "docs": "Returns endorsement records for the agency's policies, with OData-style query options."
+        },
+        {
+          "info": {
+            "name": "List endorsement agency commissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/PolicyEndorsementAgencyCommissionDetailList"
+          },
+          "docs": "Returns agency commission detail for policy endorsements."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

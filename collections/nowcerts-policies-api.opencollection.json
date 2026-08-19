@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NowCerts Authentication Policies API",
+    "version": "2.1.5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Insert or update a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nowcerts.com/api/Policy/Insert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new policy or update an existing one for a given insured. Schema modeled."
+        },
+        {
+          "info": {
+            "name": "Partially update a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.nowcerts.com/api/Policy/PartialUpdate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Apply a partial update to an existing policy identified by its database id."
+        },
+        {
+          "info": {
+            "name": "Search policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/Policy/FindPolicies",
+            "params": [
+              {
+                "name": "policyNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "carrier",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lineOfBusiness",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "effectiveDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "expirationDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search policies by policy number, carrier, line of business, and effective/expiration dates."
+        },
+        {
+          "info": {
+            "name": "List policy master data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/PolicyDetailList",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData-style filter expression."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "OData-style ordering expression."
+              }
+            ]
+          },
+          "docs": "Returns policy master records, with OData-style query options."
+        },
+        {
+          "info": {
+            "name": "Get policy coverages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/Policy/Coverages",
+            "params": [
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns coverage detail for a policy."
+        },
+        {
+          "info": {
+            "name": "List policy status types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/Policy/StatusTypes"
+          },
+          "docs": "Returns the enumeration of policy status types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

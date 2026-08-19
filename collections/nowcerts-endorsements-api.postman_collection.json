@@ -1,0 +1,495 @@
+{
+  "item": [
+    {
+      "id": "2fb4c5cb-6f7d-4211-9edd-7b91e16a1294",
+      "name": "Endorsements",
+      "description": {
+        "content": "Policy endorsements and their financial detail.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a1e00e8-f0d0-477e-909f-2d198bb8269e",
+          "name": "Insert a policy tied to an endorsement id",
+          "request": {
+            "name": "Insert a policy tied to an endorsement id",
+            "description": {
+              "content": "Create or update a policy referencing an existing endorsement id. Schema modeled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Policy",
+                "InsertWithEndorementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\",\n  \"endorsementId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "94e891d2-acf0-4542-a263-a2849d52de93",
+              "name": "The created or updated policy.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "InsertWithEndorementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\",\n  \"endorsementId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\",\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3c32228-8de3-44f8-9059-66f0210b522d",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "InsertWithEndorementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\",\n  \"endorsementId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97424bea-91b7-4100-a915-b3ec17d7912b",
+          "name": "List policy endorsements",
+          "request": {
+            "name": "List policy endorsements",
+            "description": {
+              "content": "Returns endorsement records for the agency's policies, with OData-style query options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "PolicyEndorsementDetailList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData-style filter expression."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "OData-style ordering expression."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7dcc6aec-daaa-4fa6-9e98-25bac006afc7",
+              "name": "A list of endorsements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PolicyEndorsementDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"databaseId\": \"e9f6d8da-fc0c-150e-603f-ab2c87d38963\",\n    \"policyDatabaseId\": \"ad6ef752-9063-493a-28cb-35dbdefc5376\",\n    \"endorsementNumber\": \"string\",\n    \"effectiveDate\": \"1989-08-22\",\n    \"premiumChange\": 5163.113542134056,\n    \"key_0\": \"string\"\n  },\n  {\n    \"databaseId\": \"9f7cce25-3d72-1e7b-f4f3-f29e6c7181ef\",\n    \"policyDatabaseId\": \"5d179a52-756d-35ef-2259-dca98f72d06f\",\n    \"endorsementNumber\": \"string\",\n    \"effectiveDate\": \"1986-08-29\",\n    \"premiumChange\": 2128.6005335460236\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc0ad577-d7f4-43c1-912c-3801f31c96a6",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PolicyEndorsementDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a47d2259-055f-427c-a89c-570127dfbb1a",
+          "name": "List endorsement agency commissions",
+          "request": {
+            "name": "List endorsement agency commissions",
+            "description": {
+              "content": "Returns agency commission detail for policy endorsements.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "PolicyEndorsementAgencyCommissionDetailList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6139a49a-55d5-44c7-8dca-16c4e061eaf4",
+              "name": "A list of endorsement agency commissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PolicyEndorsementAgencyCommissionDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": true\n  },\n  {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0bc0f94-0a1f-46c5-accf-43e6c0fbf7ec",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PolicyEndorsementAgencyCommissionDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nowcerts.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "94d3df4a-fb89-40e0-8fb0-a801562f32b2",
+    "name": "NowCerts Authentication Endorsements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com). It lets an agency and its integration partners import, update, search, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, and tasks and workflow. All requests are authenticated with a bearer token obtained from https://api.nowcerts.com/token using the OAuth2 password grant; the account making the request must have the \"API Integration\" agent role assigned, and API access is available on the Professional subscription tier and above.\nEndpoints in this document are confirmed from the live ASP.NET Web API help page at api.nowcerts.com/Help (v2.1.5). Request and response schemas are honestly modeled from the documented operations and standard AMS field sets; where a payload was not fully enumerated on the help page it is marked as modeled and additionalProperties is left open. This is a representative subset of a 160+ endpoint API, organized around the five core resources catalogued for the API Evangelist network.\n\nContact Support:\n Name: NowCerts / Momentum AMP",
+      "type": "text/plain"
+    }
+  }
+}

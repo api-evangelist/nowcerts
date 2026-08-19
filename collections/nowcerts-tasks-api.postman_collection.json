@@ -1,0 +1,616 @@
+{
+  "item": [
+    {
+      "id": "08dd9673-e351-4015-915c-50dfcfbdbc57",
+      "name": "Tasks",
+      "description": {
+        "content": "Tasks, task work groups, and to-do workflow.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5521b02f-e9b5-433e-8396-722b2d490980",
+          "name": "Insert or update a task work group",
+          "request": {
+            "name": "Insert or update a task work group",
+            "description": {
+              "content": "Create or update a task and its work group. Schema modeled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "TasksWork",
+                "InsertUpdate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"subject\": \"<string>\",\n  \"description\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"assignedToAgentId\": \"<uuid>\",\n  \"completed\": \"<boolean>\",\n  \"key_0\": false,\n  \"key_1\": 1236\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d684673-7fb9-40b4-b0e6-fb6ec95e589b",
+              "name": "The created or updated task.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TasksWork",
+                    "InsertUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"subject\": \"<string>\",\n  \"description\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"assignedToAgentId\": \"<uuid>\",\n  \"completed\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"databaseId\": \"<uuid>\",\n  \"subject\": \"<string>\",\n  \"description\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"assignedToAgentId\": \"<uuid>\",\n  \"completed\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79a0dc37-8093-482d-a6fb-48f02d80c7d3",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TasksWork",
+                    "InsertUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"subject\": \"<string>\",\n  \"description\": \"<string>\",\n  \"dueDate\": \"<dateTime>\",\n  \"assignedToAgentId\": \"<uuid>\",\n  \"completed\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af1f4f8d-9807-4da5-ae99-f02f87afe4c4",
+          "name": "List tasks",
+          "request": {
+            "name": "List tasks",
+            "description": {
+              "content": "Returns task records, with OData-style query options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "TasksList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData-style filter expression."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "OData-style ordering expression."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ba46854-2d82-4d4d-981d-ae455f4e8da1",
+              "name": "A list of tasks.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TasksList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"databaseId\": \"<uuid>\",\n    \"subject\": \"<string>\",\n    \"description\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"assignedToAgentId\": \"<uuid>\",\n    \"completed\": \"<boolean>\",\n    \"key_0\": 6173,\n    \"key_1\": \"string\"\n  },\n  {\n    \"databaseId\": \"<uuid>\",\n    \"subject\": \"<string>\",\n    \"description\": \"<string>\",\n    \"dueDate\": \"<dateTime>\",\n    \"assignedToAgentId\": \"<uuid>\",\n    \"completed\": \"<boolean>\",\n    \"key_0\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26923d79-7a3e-4002-9929-711bbe0f0b69",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TasksList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebb0ee0e-6741-4ac7-84c6-b1bf82b38be5",
+          "name": "List task work groups",
+          "request": {
+            "name": "List task work groups",
+            "description": {
+              "content": "Returns task work group records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "TasksWorkGroupList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ee880f9-fbc4-4ff0-b747-4b9adeebd02a",
+              "name": "A list of task work groups.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TasksWorkGroupList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": 8037.200541685459\n  },\n  {\n    \"key_0\": false,\n    \"key_1\": 6382\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e60bfff-ef35-4930-a7e5-2843ef4225e4",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TasksWorkGroupList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c34582e-369e-4b42-8633-4997fb96edb3",
+          "name": "List to-do items",
+          "request": {
+            "name": "List to-do items",
+            "description": {
+              "content": "Returns to-do items for the agency's workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ToDoList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bfa41b80-27f9-4b13-9c81-83c117c609bf",
+              "name": "A list of to-do items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ToDoList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": 8037.200541685459\n  },\n  {\n    \"key_0\": false,\n    \"key_1\": 6382\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61eeef0a-24bd-4dbf-a832-b38b2c998a88",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ToDoList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nowcerts.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1a6244c9-5065-4cd0-b674-76b0007de24f",
+    "name": "NowCerts Authentication Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com). It lets an agency and its integration partners import, update, search, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, and tasks and workflow. All requests are authenticated with a bearer token obtained from https://api.nowcerts.com/token using the OAuth2 password grant; the account making the request must have the \"API Integration\" agent role assigned, and API access is available on the Professional subscription tier and above.\nEndpoints in this document are confirmed from the live ASP.NET Web API help page at api.nowcerts.com/Help (v2.1.5). Request and response schemas are honestly modeled from the documented operations and standard AMS field sets; where a payload was not fully enumerated on the help page it is marked as modeled and additionalProperties is left open. This is a representative subset of a 160+ endpoint API, organized around the five core resources catalogued for the API Evangelist network.\n\nContact Support:\n Name: NowCerts / Momentum AMP",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,463 @@
+{
+  "item": [
+    {
+      "id": "5dbaae53-c451-4899-bdaa-1e0d2b94386d",
+      "name": "Carriers",
+      "description": {
+        "content": "Carrier, underwriter, and line-of-business reference data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "60ff45df-7a5d-4f00-a77d-70e6279e23bc",
+          "name": "List carriers",
+          "request": {
+            "name": "List carriers",
+            "description": {
+              "content": "Returns the insurance carriers configured for the agency, with OData-style query options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "CarrierDetailList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData-style filter expression."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "OData-style ordering expression."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05b2fe0d-6f73-4e7f-a471-5c733002ae75",
+              "name": "A list of carriers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "CarrierDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"databaseId\": \"b0f53ffd-550e-f7bd-a48e-a3f226a0946f\",\n    \"name\": \"string\",\n    \"naicCode\": \"string\",\n    \"phone\": \"string\",\n    \"key_0\": 6339\n  },\n  {\n    \"databaseId\": \"c99e593f-95be-621c-dcd4-71f1e048d862\",\n    \"name\": \"string\",\n    \"naicCode\": \"string\",\n    \"phone\": \"string\",\n    \"key_0\": 2825,\n    \"key_1\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14df900e-e30d-44dd-b67e-56f69413cd6e",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "CarrierDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\",\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97e91c71-cdd4-4702-b4fa-4120c4758a80",
+          "name": "List underwriters",
+          "request": {
+            "name": "List underwriters",
+            "description": {
+              "content": "Returns the underwriters associated with carriers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "UnderwriterDetailList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04e39be8-ceb1-4fa0-a719-ef1714f0cb06",
+              "name": "A list of underwriters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "UnderwriterDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": \"string\"\n  },\n  {\n    \"key_0\": 2121,\n    \"key_1\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "577485a7-ad72-4e71-a67e-edd4ff8d9d66",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "UnderwriterDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\",\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9dea0fa8-2df0-4350-9c62-c6086221ff15",
+          "name": "List lines of business",
+          "request": {
+            "name": "List lines of business",
+            "description": {
+              "content": "Returns the lines of business (LOB) master data used to classify policies and carriers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "LineOfBusinessList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dced8b1f-8236-4761-b0c9-735a25553ee6",
+              "name": "A list of lines of business.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "LineOfBusinessList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": \"string\"\n  },\n  {\n    \"key_0\": 2121,\n    \"key_1\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d340ec6e-d713-4ca2-82aa-0d7b9a423e5b",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "LineOfBusinessList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\",\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nowcerts.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "732b60f5-5037-40e2-8f1d-c9e67e7d9389",
+    "name": "NowCerts Authentication Carriers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com). It lets an agency and its integration partners import, update, search, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, and tasks and workflow. All requests are authenticated with a bearer token obtained from https://api.nowcerts.com/token using the OAuth2 password grant; the account making the request must have the \"API Integration\" agent role assigned, and API access is available on the Professional subscription tier and above.\nEndpoints in this document are confirmed from the live ASP.NET Web API help page at api.nowcerts.com/Help (v2.1.5). Request and response schemas are honestly modeled from the documented operations and standard AMS field sets; where a payload was not fully enumerated on the help page it is marked as modeled and additionalProperties is left open. This is a representative subset of a 160+ endpoint API, organized around the five core resources catalogued for the API Evangelist network.\n\nContact Support:\n Name: NowCerts / Momentum AMP",
+      "type": "text/plain"
+    }
+  }
+}

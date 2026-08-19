@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NowCerts Authentication Insureds API",
+    "version": "2.1.5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insureds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Insert or update an insured/prospect",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nowcerts.com/api/Insured/Insert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new insured or prospect, or update an existing one when a matching database id is supplied. Supports custom fields. Schema modeled."
+        },
+        {
+          "info": {
+            "name": "List insured/prospect master data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/InsuredDetailList",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData-style filter expression."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "OData-style ordering expression."
+              }
+            ]
+          },
+          "docs": "Returns insured and prospect master records. Supports OData-style query options (for example $filter, $top, $skip, $orderby) as exposed by the underlying ASP.NET Web API detail-list endpoints."
+        },
+        {
+          "info": {
+            "name": "Multi-field insured/prospect search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/Customers/GetCustomers",
+            "params": [
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search term matched across insured fields."
+              }
+            ]
+          },
+          "docs": "Search insureds and prospects across name, email, phone, and other fields."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

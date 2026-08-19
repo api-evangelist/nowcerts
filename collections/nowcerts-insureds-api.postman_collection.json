@@ -1,0 +1,515 @@
+{
+  "item": [
+    {
+      "id": "1ca5b861-880e-4a1b-9371-f1c3e5f52ed3",
+      "name": "Insureds",
+      "description": {
+        "content": "Insureds and prospects (customers), their contacts, and related data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "59792141-60cd-48ff-a713-3c1a4a83d2e5",
+          "name": "Insert or update an insured/prospect",
+          "request": {
+            "name": "Insert or update an insured/prospect",
+            "description": {
+              "content": "Create a new insured or prospect, or update an existing one when a matching database id is supplied. Supports custom fields. Schema modeled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Insured",
+                "Insert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"commercialName\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"addressLine1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zipCode\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": false,\n    \"key_3\": 5988.513720956085\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d36c41f7-81b6-4c7b-a533-af147bf11676",
+              "name": "The created or updated insured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Insured",
+                    "Insert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"commercialName\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"addressLine1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zipCode\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"databaseId\": \"<uuid>\",\n  \"commercialName\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"addressLine1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zipCode\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63447e95-ae32-4518-bdad-fa6f24e96bfb",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Insured",
+                    "Insert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"commercialName\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"addressLine1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zipCode\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe2213d4-f5d1-4ec7-9962-93f165c8cd94",
+          "name": "List insured/prospect master data",
+          "request": {
+            "name": "List insured/prospect master data",
+            "description": {
+              "content": "Returns insured and prospect master records. Supports OData-style query options (for example $filter, $top, $skip, $orderby) as exposed by the underlying ASP.NET Web API detail-list endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "InsuredDetailList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData-style filter expression."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "OData-style ordering expression."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09f26ac9-bb5d-4d71-8bd5-d0c89d724dc7",
+              "name": "A list of insureds.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "InsuredDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"databaseId\": \"<uuid>\",\n    \"commercialName\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"type\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"customFields\": {\n      \"key_0\": 2194.5262179783363,\n      \"key_1\": 3703.24481400535\n    }\n  },\n  {\n    \"databaseId\": \"<uuid>\",\n    \"commercialName\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"type\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"customFields\": {\n      \"key_0\": true,\n      \"key_1\": 491\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6605c417-8bb9-422e-b32c-4aac91832a61",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "InsuredDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d8b13fe-b299-453a-bfab-1435feb4f9cf",
+          "name": "Multi-field insured/prospect search",
+          "request": {
+            "name": "Multi-field insured/prospect search",
+            "description": {
+              "content": "Search insureds and prospects across name, email, phone, and other fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Customers",
+                "GetCustomers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Free-text search term matched across insured fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ef0ef51-3688-435a-b2a1-d2109d1bc270",
+              "name": "Matching insureds/prospects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Customers",
+                    "GetCustomers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"databaseId\": \"<uuid>\",\n    \"commercialName\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"type\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"customFields\": {\n      \"key_0\": 2194.5262179783363,\n      \"key_1\": 3703.24481400535\n    }\n  },\n  {\n    \"databaseId\": \"<uuid>\",\n    \"commercialName\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"type\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"customFields\": {\n      \"key_0\": true,\n      \"key_1\": 491\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a00f7e4c-e508-4dc5-bfc5-84c4ba379021",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Customers",
+                    "GetCustomers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nowcerts.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fb5d685e-1817-40bf-8294-631013e38b15",
+    "name": "NowCerts Authentication Insureds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com). It lets an agency and its integration partners import, update, search, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, and tasks and workflow. All requests are authenticated with a bearer token obtained from https://api.nowcerts.com/token using the OAuth2 password grant; the account making the request must have the \"API Integration\" agent role assigned, and API access is available on the Professional subscription tier and above.\nEndpoints in this document are confirmed from the live ASP.NET Web API help page at api.nowcerts.com/Help (v2.1.5). Request and response schemas are honestly modeled from the documented operations and standard AMS field sets; where a payload was not fully enumerated on the help page it is marked as modeled and additionalProperties is left open. This is a representative subset of a 160+ endpoint API, organized around the five core resources catalogued for the API Evangelist network.\n\nContact Support:\n Name: NowCerts / Momentum AMP",
+      "type": "text/plain"
+    }
+  }
+}

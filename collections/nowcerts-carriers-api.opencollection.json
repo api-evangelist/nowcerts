@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NowCerts Authentication Carriers API",
+    "version": "2.1.5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Carriers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List carriers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/CarrierDetailList",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData-style filter expression."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "OData-style ordering expression."
+              }
+            ]
+          },
+          "docs": "Returns the insurance carriers configured for the agency, with OData-style query options."
+        },
+        {
+          "info": {
+            "name": "List underwriters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/UnderwriterDetailList"
+          },
+          "docs": "Returns the underwriters associated with carriers."
+        },
+        {
+          "info": {
+            "name": "List lines of business",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/LineOfBusinessList"
+          },
+          "docs": "Returns the lines of business (LOB) master data used to classify policies and carriers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

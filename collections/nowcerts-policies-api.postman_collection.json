@@ -1,0 +1,984 @@
+{
+  "item": [
+    {
+      "id": "b3bd3f43-6f26-4911-81bc-69711d7bb00e",
+      "name": "Policies",
+      "description": {
+        "content": "Policies, coverages, and quotes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3961e63-87c4-4272-a8ba-9c6cac6c25ce",
+          "name": "Insert or update a policy",
+          "request": {
+            "name": "Insert or update a policy",
+            "description": {
+              "content": "Create a new policy or update an existing one for a given insured. Schema modeled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Policy",
+                "Insert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2b013ebb-8d78-4244-a264-26e3320de769",
+              "name": "The created or updated policy.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "Insert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a1064f4-9308-47f3-84eb-ca7ff7418428",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "Insert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63f4c221-7d16-4cb0-be4a-756906ff66e8",
+          "name": "Partially update a policy",
+          "request": {
+            "name": "Partially update a policy",
+            "description": {
+              "content": "Apply a partial update to an existing policy identified by its database id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Policy",
+                "PartialUpdate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "62100497-243b-47f8-825e-d52369f94777",
+              "name": "The updated policy.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "PartialUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8d30c62-c04f-437a-8632-8463c64bf76e",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "PartialUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<uuid>\",\n  \"insuredDatabaseId\": \"<uuid>\",\n  \"number\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"lineOfBusiness\": \"<string>\",\n  \"effectiveDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"premium\": \"<number>\",\n  \"statusType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54920576-aed0-4c9a-815e-7d4a0b37091a",
+          "name": "Search policies",
+          "request": {
+            "name": "Search policies",
+            "description": {
+              "content": "Search policies by policy number, carrier, line of business, and effective/expiration dates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Policy",
+                "FindPolicies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "policyNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "carrier",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lineOfBusiness",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "effectiveDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "expirationDate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "233653df-2ca9-412e-a216-66c0b9b17058",
+              "name": "Matching policies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "FindPolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "policyNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "carrier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lineOfBusiness",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "effectiveDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "expirationDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"databaseId\": \"<uuid>\",\n    \"insuredDatabaseId\": \"<uuid>\",\n    \"number\": \"<string>\",\n    \"carrierName\": \"<string>\",\n    \"lineOfBusiness\": \"<string>\",\n    \"effectiveDate\": \"<date>\",\n    \"expirationDate\": \"<date>\",\n    \"premium\": \"<number>\",\n    \"statusType\": \"<string>\"\n  },\n  {\n    \"databaseId\": \"<uuid>\",\n    \"insuredDatabaseId\": \"<uuid>\",\n    \"number\": \"<string>\",\n    \"carrierName\": \"<string>\",\n    \"lineOfBusiness\": \"<string>\",\n    \"effectiveDate\": \"<date>\",\n    \"expirationDate\": \"<date>\",\n    \"premium\": \"<number>\",\n    \"statusType\": \"<string>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cb4cfcc-5778-463f-ae4c-faaf91a7d402",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "FindPolicies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "policyNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "carrier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lineOfBusiness",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "effectiveDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "expirationDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a79c90c-903b-4fa5-b58d-c0b6f9cbcf4e",
+          "name": "List policy master data",
+          "request": {
+            "name": "List policy master data",
+            "description": {
+              "content": "Returns policy master records, with OData-style query options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "PolicyDetailList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData-style filter expression."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "OData-style ordering expression."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3412e67f-9ea3-4f21-b3f9-574170ba3f4e",
+              "name": "A list of policies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PolicyDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"databaseId\": \"<uuid>\",\n    \"insuredDatabaseId\": \"<uuid>\",\n    \"number\": \"<string>\",\n    \"carrierName\": \"<string>\",\n    \"lineOfBusiness\": \"<string>\",\n    \"effectiveDate\": \"<date>\",\n    \"expirationDate\": \"<date>\",\n    \"premium\": \"<number>\",\n    \"statusType\": \"<string>\"\n  },\n  {\n    \"databaseId\": \"<uuid>\",\n    \"insuredDatabaseId\": \"<uuid>\",\n    \"number\": \"<string>\",\n    \"carrierName\": \"<string>\",\n    \"lineOfBusiness\": \"<string>\",\n    \"effectiveDate\": \"<date>\",\n    \"expirationDate\": \"<date>\",\n    \"premium\": \"<number>\",\n    \"statusType\": \"<string>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "974bc3c4-c2aa-4fe8-8eb9-318abb1547f3",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PolicyDetailList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3eca1f14-cbe2-4053-8bf3-d552eda949d8",
+          "name": "Get policy coverages",
+          "request": {
+            "name": "Get policy coverages",
+            "description": {
+              "content": "Returns coverage detail for a policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Policy",
+                "Coverages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "policyId",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e492c9d-e38d-4e80-82df-a2fdd92a0e81",
+              "name": "Coverage detail.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "Coverages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "policyId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"limit\": 5840.2297539238325,\n    \"deductible\": 5936.178555543086\n  },\n  {\n    \"name\": \"string\",\n    \"limit\": 6342.302332121273,\n    \"deductible\": 8283.52307603618,\n    \"key_0\": false,\n    \"key_1\": false,\n    \"key_2\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9386a839-64a3-44c5-8117-249de7d5ead4",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "Coverages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "policyId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "258b8cd1-5551-4895-9e2e-186aeb1c3e18",
+          "name": "List policy status types",
+          "request": {
+            "name": "List policy status types",
+            "description": {
+              "content": "Returns the enumeration of policy status types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Policy",
+                "StatusTypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22cb21a4-4b8b-4021-9c32-069fee9599ba",
+              "name": "Policy status types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "StatusTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": \"string\",\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  },\n  {\n    \"key_0\": 7118.278128365593\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea0efd0f-85f2-4564-b3d2-71ce53f68829",
+              "name": "Missing or invalid bearer token, or the user lacks the API Integration role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Policy",
+                    "StatusTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nowcerts.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2311d088-880f-4fcb-9b3e-44f4a2505b8a",
+    "name": "NowCerts Authentication Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com). It lets an agency and its integration partners import, update, search, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, and tasks and workflow. All requests are authenticated with a bearer token obtained from https://api.nowcerts.com/token using the OAuth2 password grant; the account making the request must have the \"API Integration\" agent role assigned, and API access is available on the Professional subscription tier and above.\nEndpoints in this document are confirmed from the live ASP.NET Web API help page at api.nowcerts.com/Help (v2.1.5). Request and response schemas are honestly modeled from the documented operations and standard AMS field sets; where a payload was not fully enumerated on the help page it is marked as modeled and additionalProperties is left open. This is a representative subset of a 160+ endpoint API, organized around the five core resources catalogued for the API Evangelist network.\n\nContact Support:\n Name: NowCerts / Momentum AMP",
+      "type": "text/plain"
+    }
+  }
+}

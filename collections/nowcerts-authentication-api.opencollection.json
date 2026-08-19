@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NowCerts Authentication API",
+    "version": "2.1.5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Obtain a bearer token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nowcerts.com/api/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchange agency user credentials for a bearer access token using the OAuth2 password grant. The user must have the \"API Integration\" agent role. Returns an access_token used as a Bearer token on all subsequent requests."
+        },
+        {
+          "info": {
+            "name": "API availability check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nowcerts.com/api/heartbeat"
+          },
+          "docs": "Lightweight liveness check for the API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
