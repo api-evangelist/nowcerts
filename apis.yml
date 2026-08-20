@@ -153,6 +153,8 @@ apis:
   humanURL: https://api.nowcerts.com/Help
   baseURL: https://api.nowcerts.com/api
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
