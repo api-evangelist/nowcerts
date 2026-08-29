@@ -15,6 +15,18 @@ description: >-
   are gated to the Professional tier and above. Endpoints are documented on the
   public ASP.NET Web API help page at api.nowcerts.com/Help and are widely used
   through Zapier and partner integrations.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
