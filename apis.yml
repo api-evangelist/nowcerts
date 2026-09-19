@@ -82,6 +82,8 @@ apis:
   humanURL: https://api.nowcerts.com/Help
   baseURL: https://api.nowcerts.com/api
   tags:
+  - Carrier
+  tags_raw:
   - Carriers
   properties:
   - type: OpenAPI
