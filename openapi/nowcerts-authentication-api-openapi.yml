@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: NowCerts Authentication API
-  description: 'The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com). It lets an agency and its integration partners import, update, search, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, and tasks and workflow. All requests are authenticated with a bearer token obtained from https://api.nowcerts.com/token using the OAuth2 password grant; the account making the request must have the "API Integration" agent role assigned, and API access is available on the Professional subscription tier and above.
-
-    Endpoints in this document are confirmed from the live ASP.NET Web API help page at api.nowcerts.com/Help (v2.1.5). Request and response schemas are honestly modeled from the documented operations and standard AMS field sets; where a payload was not fully enumerated on the help page it is marked as modeled and additionalProperties is left open. This is a representative subset of a 160+ endpoint API, organized around the five core resources catalogued for the API Evangelist network.'
+  description: The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com).
   version: 2.1.5
   contact:
     name: NowCerts / Momentum AMP
@@ -72,6 +70,14 @@ paths:
           description: The API is available.
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string
+      additionalProperties: true
     TokenResponse:
       type: object
       description: OAuth2 password-grant token response. Modeled.
@@ -84,14 +90,6 @@ components:
         expires_in:
           type: integer
         refresh_token:
-          type: string
-      additionalProperties: true
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        error:
           type: string
       additionalProperties: true
   responses:

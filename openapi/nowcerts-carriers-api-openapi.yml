@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: NowCerts Authentication Carriers API
-  description: 'The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com). It lets an agency and its integration partners import, update, search, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, and tasks and workflow. All requests are authenticated with a bearer token obtained from https://api.nowcerts.com/token using the OAuth2 password grant; the account making the request must have the "API Integration" agent role assigned, and API access is available on the Professional subscription tier and above.
-
-    Endpoints in this document are confirmed from the live ASP.NET Web API help page at api.nowcerts.com/Help (v2.1.5). Request and response schemas are honestly modeled from the documented operations and standard AMS field sets; where a payload was not fully enumerated on the help page it is marked as modeled and additionalProperties is left open. This is a representative subset of a 160+ endpoint API, organized around the five core resources catalogued for the API Evangelist network.'
+  title: NowCerts Carriers API
+  description: The NowCerts API is the REST interface to the NowCerts insurance agency management system (now branded Momentum AMP; the API is still served from api.nowcerts.com).
   version: 2.1.5
   contact:
     name: NowCerts / Momentum AMP
@@ -80,6 +78,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token, or the user lacks the API Integration role.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -103,13 +108,6 @@ components:
         phone:
           type: string
       additionalProperties: true
-  responses:
-    Unauthorized:
-      description: Missing or invalid bearer token, or the user lacks the API Integration role.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     ODataFilter:
       name: $filter
@@ -117,6 +115,12 @@ components:
       description: OData-style filter expression.
       schema:
         type: string
+    ODataTop:
+      name: $top
+      in: query
+      description: Maximum number of records to return.
+      schema:
+        type: integer
     ODataOrderBy:
       name: $orderby
       in: query
@@ -127,12 +131,6 @@ components:
       name: $skip
       in: query
       description: Number of records to skip.
-      schema:
-        type: integer
-    ODataTop:
-      name: $top
-      in: query
-      description: Maximum number of records to return.
       schema:
         type: integer
   securitySchemes:
