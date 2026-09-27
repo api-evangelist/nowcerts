@@ -87,21 +87,24 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid bearer token, or the user lacks the API Integration role.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    Endorsement:
       type: object
+      description: A policy endorsement record. Modeled.
       properties:
-        message:
+        databaseId:
           type: string
-        error:
+          format: uuid
+        policyDatabaseId:
           type: string
+          format: uuid
+        endorsementNumber:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        premiumChange:
+          type: number
       additionalProperties: true
     Policy:
       type: object
@@ -130,25 +133,28 @@ components:
         statusType:
           type: string
       additionalProperties: true
-    Endorsement:
+    Error:
       type: object
-      description: A policy endorsement record. Modeled.
       properties:
-        databaseId:
+        message:
           type: string
-          format: uuid
-        policyDatabaseId:
+        error:
           type: string
-          format: uuid
-        endorsementNumber:
-          type: string
-        effectiveDate:
-          type: string
-          format: date
-        premiumChange:
-          type: number
       additionalProperties: true
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token, or the user lacks the API Integration role.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
+    ODataSkip:
+      name: $skip
+      in: query
+      description: Number of records to skip.
+      schema:
+        type: integer
     ODataFilter:
       name: $filter
       in: query
@@ -167,12 +173,6 @@ components:
       description: OData-style ordering expression.
       schema:
         type: string
-    ODataSkip:
-      name: $skip
-      in: query
-      description: Number of records to skip.
-      schema:
-        type: integer
   securitySchemes:
     bearerAuth:
       type: http

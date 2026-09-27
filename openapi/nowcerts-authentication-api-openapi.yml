@@ -70,14 +70,6 @@ paths:
           description: The API is available.
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        error:
-          type: string
-      additionalProperties: true
     TokenResponse:
       type: object
       description: OAuth2 password-grant token response. Modeled.
@@ -90,6 +82,14 @@ components:
         expires_in:
           type: integer
         refresh_token:
+          type: string
+      additionalProperties: true
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
           type: string
       additionalProperties: true
   responses:
