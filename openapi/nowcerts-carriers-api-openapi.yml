@@ -78,6 +78,31 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    ODataSkip:
+      name: $skip
+      in: query
+      description: Number of records to skip.
+      schema:
+        type: integer
+    ODataOrderBy:
+      name: $orderby
+      in: query
+      description: OData-style ordering expression.
+      schema:
+        type: string
+    ODataFilter:
+      name: $filter
+      in: query
+      description: OData-style filter expression.
+      schema:
+        type: string
+    ODataTop:
+      name: $top
+      in: query
+      description: Maximum number of records to return.
+      schema:
+        type: integer
   schemas:
     Carrier:
       type: object
@@ -108,31 +133,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    ODataSkip:
-      name: $skip
-      in: query
-      description: Number of records to skip.
-      schema:
-        type: integer
-    ODataFilter:
-      name: $filter
-      in: query
-      description: OData-style filter expression.
-      schema:
-        type: string
-    ODataTop:
-      name: $top
-      in: query
-      description: Maximum number of records to return.
-      schema:
-        type: integer
-    ODataOrderBy:
-      name: $orderby
-      in: query
-      description: OData-style ordering expression.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -69,6 +69,13 @@ paths:
         '200':
           description: The API is available.
 components:
+  responses:
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     TokenResponse:
       type: object
@@ -92,13 +99,6 @@ components:
         error:
           type: string
       additionalProperties: true
-  responses:
-    BadRequest:
-      description: The request was malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

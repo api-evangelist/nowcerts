@@ -100,13 +100,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid bearer token, or the user lacks the API Integration role.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     ODataSkip:
       name: $skip
@@ -114,6 +107,12 @@ components:
       description: Number of records to skip.
       schema:
         type: integer
+    ODataOrderBy:
+      name: $orderby
+      in: query
+      description: OData-style ordering expression.
+      schema:
+        type: string
     ODataFilter:
       name: $filter
       in: query
@@ -126,12 +125,6 @@ components:
       description: Maximum number of records to return.
       schema:
         type: integer
-    ODataOrderBy:
-      name: $orderby
-      in: query
-      description: OData-style ordering expression.
-      schema:
-        type: string
   schemas:
     Task:
       type: object
@@ -161,6 +154,13 @@ components:
         error:
           type: string
       additionalProperties: true
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token, or the user lacks the API Integration role.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

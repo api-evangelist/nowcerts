@@ -86,47 +86,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid bearer token, or the user lacks the API Integration role.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    ODataSkip:
-      name: $skip
-      in: query
-      description: Number of records to skip.
-      schema:
-        type: integer
-    ODataFilter:
-      name: $filter
-      in: query
-      description: OData-style filter expression.
-      schema:
-        type: string
-    ODataTop:
-      name: $top
-      in: query
-      description: Maximum number of records to return.
-      schema:
-        type: integer
-    ODataOrderBy:
-      name: $orderby
-      in: query
-      description: OData-style ordering expression.
-      schema:
-        type: string
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        error:
-          type: string
-      additionalProperties: true
     Insured:
       type: object
       description: An insured or prospect (customer). Modeled from documented insured fields.
@@ -160,6 +120,46 @@ components:
           type: object
           additionalProperties: true
       additionalProperties: true
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string
+      additionalProperties: true
+  parameters:
+    ODataSkip:
+      name: $skip
+      in: query
+      description: Number of records to skip.
+      schema:
+        type: integer
+    ODataOrderBy:
+      name: $orderby
+      in: query
+      description: OData-style ordering expression.
+      schema:
+        type: string
+    ODataFilter:
+      name: $filter
+      in: query
+      description: OData-style filter expression.
+      schema:
+        type: string
+    ODataTop:
+      name: $top
+      in: query
+      description: Maximum number of records to return.
+      schema:
+        type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token, or the user lacks the API Integration role.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
