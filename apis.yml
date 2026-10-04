@@ -186,6 +186,9 @@ apis:
     url: >-
       https://api.nowcerts.com/Help/Api/GET-api-Policy-GetPolicyFilesList_insuredId_policyId_folderId
 common:
+- type: CapabilityMap
+  url: capabilities/nowcerts-capability-edges.yml
+  name: NowCerts Business Capability Map
 - type: AgenticAccess
   url: agentic-access/nowcerts-agentic-access.yml
 - type: DomainSecurity
