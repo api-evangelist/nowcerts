@@ -69,14 +69,15 @@ paths:
         '200':
           description: The API is available.
 components:
-  responses:
-    BadRequest:
-      description: The request was malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string
+      additionalProperties: true
     TokenResponse:
       type: object
       description: OAuth2 password-grant token response. Modeled.
@@ -91,14 +92,13 @@ components:
         refresh_token:
           type: string
       additionalProperties: true
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        error:
-          type: string
-      additionalProperties: true
+  responses:
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

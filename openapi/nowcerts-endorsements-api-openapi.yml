@@ -88,24 +88,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Endorsement:
-      type: object
-      description: A policy endorsement record. Modeled.
-      properties:
-        databaseId:
-          type: string
-          format: uuid
-        policyDatabaseId:
-          type: string
-          format: uuid
-        endorsementNumber:
-          type: string
-        effectiveDate:
-          type: string
-          format: date
-        premiumChange:
-          type: number
-      additionalProperties: true
     Policy:
       type: object
       description: An insurance policy. Modeled from documented policy fields.
@@ -141,29 +123,47 @@ components:
         error:
           type: string
       additionalProperties: true
+    Endorsement:
+      type: object
+      description: A policy endorsement record. Modeled.
+      properties:
+        databaseId:
+          type: string
+          format: uuid
+        policyDatabaseId:
+          type: string
+          format: uuid
+        endorsementNumber:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        premiumChange:
+          type: number
+      additionalProperties: true
   parameters:
-    ODataSkip:
-      name: $skip
-      in: query
-      description: Number of records to skip.
-      schema:
-        type: integer
-    ODataOrderBy:
-      name: $orderby
-      in: query
-      description: OData-style ordering expression.
-      schema:
-        type: string
     ODataFilter:
       name: $filter
       in: query
       description: OData-style filter expression.
       schema:
         type: string
+    ODataOrderBy:
+      name: $orderby
+      in: query
+      description: OData-style ordering expression.
+      schema:
+        type: string
     ODataTop:
       name: $top
       in: query
       description: Maximum number of records to return.
+      schema:
+        type: integer
+    ODataSkip:
+      name: $skip
+      in: query
+      description: Number of records to skip.
       schema:
         type: integer
   responses:
