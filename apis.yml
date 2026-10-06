@@ -52,7 +52,7 @@ tags:
 - Certificates of Insurance
 - REST
 created: '2026-07-10'
-modified: '2026-07-10'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: nowcerts:nowcerts-authentication-api
@@ -186,6 +186,8 @@ apis:
     url: >-
       https://api.nowcerts.com/Help/Api/GET-api-Policy-GetPolicyFilesList_insuredId_policyId_folderId
 common:
+- url: https://www.nowcerts.com/blog/
+  type: Blog
 - type: CapabilityMap
   url: capabilities/nowcerts-capability-edges.yml
   name: NowCerts Business Capability Map
