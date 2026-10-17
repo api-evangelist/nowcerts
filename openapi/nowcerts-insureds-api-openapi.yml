@@ -87,18 +87,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
-    ODataFilter:
-      name: $filter
-      in: query
-      description: OData-style filter expression.
-      schema:
-        type: string
-    ODataOrderBy:
-      name: $orderby
-      in: query
-      description: OData-style ordering expression.
-      schema:
-        type: string
     ODataTop:
       name: $top
       in: query
@@ -111,6 +99,18 @@ components:
       description: Number of records to skip.
       schema:
         type: integer
+    ODataOrderBy:
+      name: $orderby
+      in: query
+      description: OData-style ordering expression.
+      schema:
+        type: string
+    ODataFilter:
+      name: $filter
+      in: query
+      description: OData-style filter expression.
+      schema:
+        type: string
   schemas:
     Error:
       type: object
