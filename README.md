@@ -1,4 +1,4 @@
-# NowCerts (nowcerts)
+# NowCerts
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,87 +64,127 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-NowCerts is a cloud insurance agency management system (AMS) for independent agencies. In late 2024 the company rebranded to **Momentum AMP**, but the API is still served from `api.nowcerts.com`, so this entry keeps the NowCerts name. The API lets an agency and its integration partners import, update, search, and retrieve their own book of business: insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, tasks and workflow, plus drivers, vehicles, properties, claims, certificates of insurance, notes, SMS, and payments.
+NowCerts (rebranded to Momentum AMP, but the API is still served from api.nowcerts.com) is a cloud insurance agency management system (AMS) for independent agencies. It exposes a documented REST API that lets agencies and their integration partners import, update, and retrieve their own book of business - insureds and prospects, policies and coverages, carriers and underwriters, endorsements and commissions, tasks and workflow, drivers, vehicles, properties, claims, certificates of insurance, notes, SMS, and payments. The API is token-authenticated and reachable by any NowCerts agency whose account has the "API Integration" agent role assigned; API integrations are gated to the Professional tier and above. Endpoints are documented on the public ASP.NET Web API help page at api.nowcerts.com/Help and are widely used through Zapier and partner integrations.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/nowcerts/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/nowcerts/refs/heads/main/apis.yml)
+**Areas:** Insurance · Insurtech · Agency Management System · AMS · Policies · Insureds · Certificates of Insurance · REST
 
-## Access model (be honest)
+## NowCerts on APIs.io
 
-- **Public docs, account-gated.** The ASP.NET Web API help page at [api.nowcerts.com/Help](https://api.nowcerts.com/Help) is publicly viewable and documents 160+ REST endpoints (version 2.1.5). The collection can be imported into Postman.
-- **You need a NowCerts / Momentum agency account** to make authenticated calls, and the user must be granted the **"API Integration"** agent role.
-- **API access is tier-gated.** Essentials has no API access; Professional adds a limited number of API integrations; Business is unlimited; Enterprise adds custom and unlimited integrations. See the plans file for grounded (but unreconciled) pricing.
-- **Authentication** is a bearer token obtained from `https://api.nowcerts.com/token` via the OAuth2 password grant. The help page also references `/Identity/Login` and `/Identity/TokenRefresh`.
-- **Base URL:** `https://api.nowcerts.com/api`
+Everything profiled for NowCerts is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/nowcerts/](https://apis.io/providers/nowcerts/)** — or go straight to one of the APIs or properties below.
 
-### What is confirmed vs. modeled
+### APIs (6)
 
-Endpoint **paths and methods** in the OpenAPI and collections are **confirmed real** from the live help page. Request and response **schemas are honestly modeled** from documented behavior and standard AMS field sets — NowCerts does not publish a machine-readable OpenAPI, so payloads are marked modeled and left open (`additionalProperties: true`). Many list endpoints behave as OData-style detail lists (`$filter`, `$top`, `$skip`, `$orderby`).
+- [NowCerts Authentication API](https://apis.io/apis/nowcerts/nowcerts-authentication-api/) — Obtain and refresh bearer tokens.
+- [NowCerts Carriers API](https://apis.io/apis/nowcerts/nowcerts-carriers-api/) — Carrier, underwriter, and line-of-business reference data.
+- [NowCerts Endorsements API](https://apis.io/apis/nowcerts/nowcerts-endorsements-api/) — Policy endorsements and their financial detail.
+- [NowCerts Insureds API](https://apis.io/apis/nowcerts/nowcerts-insureds-api/) — Insureds and prospects (customers), their contacts, and related data.
+- [NowCerts Policies API](https://apis.io/apis/nowcerts/nowcerts-policies-api/) — Policies, coverages, and quotes.
+- [NowCerts Tasks API](https://apis.io/apis/nowcerts/nowcerts-tasks-api/) — Tasks, task work groups, and to-do workflow.
 
-## Tags
+### Published properties
 
-- Insurance
-- Insurtech
-- Agency Management System
-- AMS
-- Policies
-- Insureds
-- Certificates of Insurance
-- REST
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### Agentic access (1)
 
-- **Created:** 2026-07-10
-- **Modified:** 2026-07-10
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## APIs
+- [Nowcerts Agentic Access](https://apis.io/agentic-access/nowcerts/nowcerts-agentic-access/)
 
-This entry organizes the large NowCerts surface around five core resources.
+#### Collections (7)
 
-### NowCerts Insureds API
+Postman and Open Collection request collections.
 
-Create, update, search, and retrieve insureds and prospects (customers), including custom fields, contacts, tags, notes, tasks, claims, and associated policies. Confirmed endpoints include `/api/Insured/Insert`, `/api/InsuredDetailList`, and `/api/Customers/GetCustomers`.
+- [NowCerts API](https://apis.io/collections/nowcerts/open-nowcerts/)
+- [NowCerts Authentication API](https://apis.io/collections/nowcerts/open-nowcerts-authentication-api/)
+- [NowCerts Authentication Carriers API](https://apis.io/collections/nowcerts/open-nowcerts-carriers-api/)
+- [NowCerts Authentication Endorsements API](https://apis.io/collections/nowcerts/open-nowcerts-endorsements-api/)
+- [NowCerts Authentication Insureds API](https://apis.io/collections/nowcerts/open-nowcerts-insureds-api/)
+- [NowCerts Authentication Policies API](https://apis.io/collections/nowcerts/open-nowcerts-policies-api/)
+- [NowCerts Authentication Tasks API](https://apis.io/collections/nowcerts/open-nowcerts-tasks-api/)
 
-- **Human URL:** [https://api.nowcerts.com/Help](https://api.nowcerts.com/Help)
-- **Base URL:** `https://api.nowcerts.com/api`
+#### Security (2)
 
-### NowCerts Policies API
+Authentication, trust centre, and vulnerability disclosure.
 
-Insert and partially update policies, search the book of business by number/carrier/LOB/dates, and read policy detail, coverages, and status types. Confirmed endpoints include `/api/Policy/Insert`, `/api/Policy/PartialUpdate`, `/api/Policy/FindPolicies`, `/api/PolicyDetailList`, and `/api/Policy/Coverages`.
+- [Nowcerts Authentication](https://apis.io/security/nowcerts/nowcerts-authentication/)
+- [Nowcerts Domain Security](https://apis.io/security/nowcerts/nowcerts-domain-security/)
 
-- **Human URL:** [https://api.nowcerts.com/Help](https://api.nowcerts.com/Help)
-- **Base URL:** `https://api.nowcerts.com/api`
+#### Plans and pricing (1)
 
-### NowCerts Carriers API
+Published plans, tiers and prices.
 
-Retrieve carrier, underwriter, and line-of-business reference data. Confirmed endpoints include `/api/CarrierDetailList`, `/api/UnderwriterDetailList`, and `/api/LineOfBusinessList`.
+- [Nowcerts Plans Pricing](https://apis.io/plans/nowcerts/nowcerts-plans-pricing/)
 
-- **Human URL:** [https://api.nowcerts.com/Help](https://api.nowcerts.com/Help)
-- **Base URL:** `https://api.nowcerts.com/api`
+#### Rate limits (1)
 
-### NowCerts Endorsements API
+Published request limits.
 
-Read policy endorsement records and their financial detail (agency commissions, receivables, payables, financing), and insert a policy tied to an endorsement id. Confirmed endpoints include `/api/PolicyEndorsementDetailList`, `/api/PolicyEndorsementAgencyCommissionDetailList`, and `/api/Policy/InsertWithEndorementId`.
+- [Nowcerts Rate Limits](https://apis.io/rate-limits/nowcerts/nowcerts-rate-limits/)
 
-- **Human URL:** [https://api.nowcerts.com/Help](https://api.nowcerts.com/Help)
-- **Base URL:** `https://api.nowcerts.com/api`
+#### FinOps (1)
 
-### NowCerts Tasks API
+What the API costs to run, by operation.
 
-Insert and update tasks and task work groups, and read task, to-do, and task-category lists that drive agency workflow. Confirmed endpoints include `/api/TasksWork/InsertUpdate`, `/api/TasksList`, `/api/TasksWorkGroupList`, and `/api/ToDoList`.
+- [Nowcerts Finops](https://apis.io/finops/nowcerts/nowcerts-finops/)
 
-- **Human URL:** [https://api.nowcerts.com/Help](https://api.nowcerts.com/Help)
-- **Base URL:** `https://api.nowcerts.com/api`
+## Where to find this API
 
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [LinkedIn](https://www.linkedin.com/company/momentumamp)
 - [Website](https://www.nowcerts.com)
 - [Documentation](https://api.nowcerts.com/Help)
-- [Plans](plans/nowcerts-plans-pricing.yml)
-- [Rate Limits](rate-limits/nowcerts-rate-limits.yml)
-- [Fin Ops](finops/nowcerts-finops.yml)
+- [Blog](https://www.nowcerts.com/blog/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 50.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.5** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/nowcerts/](https://apis.io/providers/nowcerts/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for NowCerts: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/nowcerts/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
